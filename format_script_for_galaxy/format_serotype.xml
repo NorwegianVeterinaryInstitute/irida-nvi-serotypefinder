@@ -1,0 +1,46 @@
+<tool id="SeroTypeFinder_Format" name="SeroTypeFinder_Format" version="@TOOL_VERSION@+galaxy1">
+    <description>
+    Formats the SeroTypeFinder results.
+    </description>
+    <!--macros>
+        <import>macros.xml</import>
+    </macros-->
+
+    <!--requirements>
+	    <requirement type="package" version="@TOOL_VERSION@"></requirement>
+    </requirements-->
+
+    <command>
+        <![CDATA[
+        mkdir output_dir &&
+        python3 /Users/jeevka/IRIDA_Plugins/irida/irida-plugin-nvi-serotyper/format_serotyper_results.py $input1
+        ]]>
+    </command>
+
+    <inputs>
+            <param format="txt" name="input1" type="data" label="ResFinder Results"/>
+    </inputs>
+
+
+    <outputs>
+        <data format="txt" name="output1" from_work_dir="formatted_serotype_results.tsv" label="Formatted SeroTypeFinder results" />
+    </outputs>
+    <help>
+        <![CDATA[
+        **What it does**
+        Formats the output from SeroTypeFinder
+
+        **License**
+        To be added
+
+        ** Acknowledgments **
+        To be added
+
+        ]]>
+    </help>
+
+    <citations>
+        <citation type="doi">10.1093/jac/dkaa345</citation>
+	<citation type="doi">10.1093/jac/dkx217</citation>
+    </citations>
+</tool>
