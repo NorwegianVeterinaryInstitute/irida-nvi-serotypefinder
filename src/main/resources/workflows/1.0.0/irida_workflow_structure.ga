@@ -1,0 +1,160 @@
+{
+  "a_galaxy_workflow" : "true",
+  "annotation" : "",
+  "format-version" : "0.1",
+  "name" : "SeroTypeFinder",
+  "steps" : {
+    "0" : {
+      "workflow_outputs" : [ ],
+      "input_connections" : { },
+      "label" : "sequence_reads_pair",
+      "id" : 0,
+      "tool_state" : "{\"optional\": false, \"collection_type\": \"list:paired\"}",
+      "errors" : null,
+      "position" : {
+        "bottom" : 280.1953125,
+        "height" : 82.1953125,
+        "left" : 384,
+        "right" : 584,
+        "top" : 198,
+        "width" : 200,
+        "x" : 384,
+        "y" : 198
+      },
+      "name" : "Input dataset collection",
+      "uuid" : "5c99094d-c478-44c8-8f83-e6af0a9cf65f",
+      "outputs" : [ ],
+      "type" : "data_collection_input",
+      "tool_version" : null,
+      "annotation" : "",
+      "inputs" : [ {
+        "description" : "",
+        "name" : "sequence_reads_pair"
+      } ],
+      "content_id" : null,
+      "tool_id" : null
+    },
+    "1" : {
+      "workflow_outputs" : [ {
+        "label" : null,
+        "output_name" : "results",
+        "uuid" : "26cd9459-5d8e-4c0c-81b1-a30b548c54bf"
+      } ],
+      "input_connections" : {
+        "reads|coll" : {
+          "id" : 0,
+          "output_name" : "output"
+        }
+      },
+      "label" : null,
+      "id" : 1,
+      "tool_state" : "{\"reads\": {\"reads_select\": \"collection\", \"__current_case__\": 0, \"coll\": {\"__class__\": \"RuntimeValue\"}}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+      "errors" : null,
+      "position" : {
+        "bottom" : 458.6953125,
+        "height" : 93.1953125,
+        "left" : 640,
+        "right" : 840,
+        "top" : 365.5,
+        "width" : 200,
+        "x" : 640,
+        "y" : 365.5
+      },
+      "name" : "serotypefinder",
+      "uuid" : "a3e65844-1cae-4520-9c77-41642110daaa",
+      "outputs" : [ {
+        "name" : "results",
+        "type" : "tabular"
+      } ],
+      "tool_shed_repository" : {
+        "changeset_revision" : "1577ee103ed1",
+        "name" : "serotypefinder",
+        "owner" : "estrain",
+        "tool_shed" : "toolshed.g2.bx.psu.edu"
+      },
+      "type" : "tool",
+      "tool_version" : "0.1.0+galaxy0",
+      "annotation" : "",
+      "inputs" : [ {
+        "description" : "runtime parameter for tool serotypefinder",
+        "name" : "reads"
+      } ],
+      "post_job_actions" : {
+        "ChangeDatatypeActionresults" : {
+          "action_arguments" : {
+            "newtype" : "tabular"
+          },
+          "action_type" : "ChangeDatatypeAction",
+          "output_name" : "results"
+        },
+        "RenameDatasetActionresults" : {
+          "action_arguments" : {
+            "newname" : "serotyper_results.tsv"
+          },
+          "action_type" : "RenameDatasetAction",
+          "output_name" : "results"
+        }
+      },
+      "content_id" : "toolshed.g2.bx.psu.edu/repos/estrain/serotypefinder/serotypefinder/0.1.0+galaxy0",
+      "tool_id" : "toolshed.g2.bx.psu.edu/repos/estrain/serotypefinder/serotypefinder/0.1.0+galaxy0"
+    },
+    "2" : {
+      "workflow_outputs" : [ {
+        "label" : "Formatted SeroTypeFinder results",
+        "output_name" : "output1",
+        "uuid" : "b28d2dc0-3fb9-4213-bf1c-33044c0ce127"
+      } ],
+      "input_connections" : {
+        "input1" : {
+          "id" : 1,
+          "output_name" : "results"
+        }
+      },
+      "label" : null,
+      "id" : 2,
+      "tool_state" : "{\"input1\": {\"__class__\": \"ConnectedValue\"}, \"__page__\": null, \"__rerun_remap_job_id__\": null}",
+      "errors" : null,
+      "position" : {
+        "bottom" : 583.890625,
+        "height" : 154.390625,
+        "left" : 1118,
+        "right" : 1318,
+        "top" : 429.5,
+        "width" : 200,
+        "x" : 1118,
+        "y" : 429.5
+      },
+      "name" : "SeroTypeFinder_Format",
+      "uuid" : "ea474925-df2f-479a-bc4a-2641b58a5427",
+      "outputs" : [ {
+        "name" : "output1",
+        "type" : "txt"
+      } ],
+      "type" : "tool",
+      "tool_version" : "@TOOL_VERSION@+galaxy1",
+      "annotation" : "",
+      "inputs" : [ ],
+      "post_job_actions" : {
+        "ChangeDatatypeActionoutput1" : {
+          "action_arguments" : {
+            "newtype" : "tabular"
+          },
+          "action_type" : "ChangeDatatypeAction",
+          "output_name" : "output1"
+        },
+        "RenameDatasetActionoutput1" : {
+          "action_arguments" : {
+            "newname" : "formatted_serotypefinder_results.tsv"
+          },
+          "action_type" : "RenameDatasetAction",
+          "output_name" : "output1"
+        }
+      },
+      "content_id" : "SeroTypeFinder_Format",
+      "tool_id" : "SeroTypeFinder_Format"
+    }
+  },
+  "tags" : [ ],
+  "uuid" : "07fd9f14-8669-4e4d-be6f-240f85e47054",
+  "version" : 6
+}

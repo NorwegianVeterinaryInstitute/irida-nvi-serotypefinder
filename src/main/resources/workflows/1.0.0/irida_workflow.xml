@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iridaWorkflow>
+  <id>54341e10-731c-4a15-b41a-405a1be3bb71</id>
+  <name>SeroTypeFinder</name>
+  <version>1.0.0</version>
+  <analysisType>SeroTypeFinder</analysisType>
+  <inputs>
+    <sequenceReadsPaired>sequence_reads_pair</sequenceReadsPaired>
+    <requiresSingleSample>true</requiresSingleSample>
+  </inputs>
+  <parameters>
+    <parameter name="serotypefinder-1-reads.reads_select" defaultValue="collection">
+      <toolParameter toolId="a3e65844-1cae-4520-9c77-41642110daaa" parameterName="reads.reads_select"/>
+    </parameter>
+  </parameters>
+  <outputs>
+    <output name="serotyper_results.tsv" fileName="serotyper_results.tsv"/>
+    <output name="formatted_serotypefinder_results.tsv" fileName="formatted_serotypefinder_results.tsv"/>
+  </outputs>
+  <toolRepositories>
+    <repository>
+      <name>serotypefinder</name>
+      <owner>estrain</owner>
+      <url>https://toolshed.g2.bx.psu.edu</url>
+      <revision>1577ee103ed1</revision>
+    </repository>
+  </toolRepositories>
+</iridaWorkflow>
