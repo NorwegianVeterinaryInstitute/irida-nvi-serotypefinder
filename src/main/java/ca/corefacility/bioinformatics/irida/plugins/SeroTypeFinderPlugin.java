@@ -46,11 +46,6 @@ public class SeroTypeFinderPlugin extends Plugin {
 		public AnalysisType getAnalysisType() {
 			return SeroType_Finder;
 		}
-		/*
-		@Override
-		public Optional<String> getAnalysisViewer() {
-			return Optional.of("sistr");
-		}*/
 
 		@Override
 		public UUID getDefaultWorkflowUUID() {
