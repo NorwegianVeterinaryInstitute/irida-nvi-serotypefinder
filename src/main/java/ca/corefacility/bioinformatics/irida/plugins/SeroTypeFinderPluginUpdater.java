@@ -70,8 +70,8 @@ public class SeroTypeFinderPluginUpdater implements AnalysisSampleUpdater {
         final Sample sample = samples.iterator().next();
 
         // extracts paths to the analysis result files
-        AnalysisOutputFile amrFormattedFile = analysisSubmission.getAnalysis().getAnalysisOutputFile("formatted_serotypefinder_results.tsv");
-        Path amrFormattedPath = amrFormattedFile.getFile();
+        AnalysisOutputFile seroTypeFormattedFile = analysisSubmission.getAnalysis().getAnalysisOutputFile("formatted_serotypefinder_results.tsv");
+        Path seroTypeFormattedPath = seroTypeFormattedFile.getFile();
 
         try {
             Map<String, MetadataEntry> metadataEntries = new HashMap<>();
@@ -83,17 +83,18 @@ public class SeroTypeFinderPluginUpdater implements AnalysisSampleUpdater {
 
             // gets information from the "formatted_output.tsv" output file and constructs metadata
             // objects
-            Map<String, String> amrValues = parseAMRFile(amrFormattedPath);
+            // Map<String, String> amrValues = parseAMRFile(amrFormattedPath);
+            Map<String, String> seroTypeValues = parseSeroTypeFile(seroTypeFormattedPath);
 
-            for (String amrField : amrValues.keySet()) {
-                final String amrValue = amrValues.get(amrField);
+            for (String seroTypeField : seroTypeValues.keySet()) {
+                final String seroTypeValue = seroTypeValues.get(seroTypeField);
 
-                PipelineProvidedMetadataEntry amrEntry = new PipelineProvidedMetadataEntry(amrValue, "text", analysisSubmission);
+                PipelineProvidedMetadataEntry seroTypeEntry = new PipelineProvidedMetadataEntry(seroTypeValue, "text", analysisSubmission);
 
                 // key will be string like 'mlst/0.1.0/scheme'
                 //String key = workflowName.toLowerCase() + "/" + amrField;
-                String key = "SeroTypeFinder/" + amrField;
-                metadataEntries.put(key, amrEntry);
+                String key = "SeroTypeFinder/" + seroTypeField;
+                metadataEntries.put(key, seroTypeEntry);
             }
 
             //convert the string/entry Map to a Set of MetadataEntry.  This has the same function as the old metadataTemplateService.getMetadataMap
@@ -111,49 +112,35 @@ public class SeroTypeFinderPluginUpdater implements AnalysisSampleUpdater {
 
 
     //private Map<String, String> parseAMRFile(Path amrFile) throws IOException, PostProcessingException
-    private Map<String, String> parseAMRFile(Path amrFile) throws IOException, PostProcessingException {
+    private Map<String, String> parseSeroTypeFile(Path serotypeFile) throws IOException, PostProcessingException {
         Map<String, String> amrResults = new HashMap<>();
+        Map<String, String> seroTyperResults = new HashMap<>();
 
         //BufferedReader amrReader = new BufferedReader(new FileReader(amrFile.toFile()));
-        BufferedReader amrReader = new BufferedReader(new FileReader(amrFile.toFile()));
+        BufferedReader serotypeReader = new BufferedReader(new FileReader(serotypeFile.toFile()));
 
         try {
 
-            String[] amrFields = {
+            String[] serotypeFields = {
                     "SeroType",
             };
 
-            String word = amrReader.readLine();
-            String data_line = amrReader.readLine();
-            String[] amrValues = data_line.split("\t");
-
-            //if (amrValues.length == 0){
-            //    amrValues[0] = "NIL";
-            //    amrValues[1] = "NIL";
-            //    amrValues[2] = "NIL";
-            //    amrValues[3] = "NIL";
-            //    amrValues[4] = "NIL";
-            //} else if (amrValues.length == 2){
-            //    amrValues[3] = "NIL";
-            //    amrValues[4] = "NIL";
-            //} else {
-            //    System.out.println(" XX When FOUR XX" + amrValues);
-            //}
-
-            //String[] amrValues = amrValuesLine.split("\n");
+            String word = serotypeReader.readLine();
+            String data_line = serotypeReader.readLine();
+            String[] serotypeValues = data_line.split("\t");
 
 
             // Start index at 1, skip sample_id from mlstFile
-            for (int i = 0; i < amrFields.length; i++) { 
-                amrResults.put(amrFields[i], amrValues[i]);
+            for (int i = 0; i < serotypeFields.length; i++) { 
+                seroTyperResults.put(serotypeFields[i], serotypeValues[i]);
             }
 
         } finally {
             // make sure to close, even in cases where an exception is thrown
-            amrReader.close();
+            serotypeReader.close();
         }
 
-        return amrResults;
+        return seroTyperResults;
     }
 
     @Override
