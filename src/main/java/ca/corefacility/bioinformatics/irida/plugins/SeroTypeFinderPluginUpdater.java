@@ -111,9 +111,9 @@ public class SeroTypeFinderPluginUpdater implements AnalysisSampleUpdater {
     }
 
 
-    //private Map<String, String> parseAMRFile(Path amrFile) throws IOException, PostProcessingException
+    // Parsing the output file and storing the results in hash-map
     private Map<String, String> parseSeroTypeFile(Path serotypeFile) throws IOException, PostProcessingException {
-        Map<String, String> amrResults = new HashMap<>();
+       // Map<String, String> amrResults = new HashMap<>();
         Map<String, String> seroTyperResults = new HashMap<>();
 
         //BufferedReader amrReader = new BufferedReader(new FileReader(amrFile.toFile()));
