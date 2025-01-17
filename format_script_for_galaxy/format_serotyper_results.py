@@ -15,7 +15,10 @@ for i in F1:
         if n == 0:
             o_type = temp[2]
         else:
-            o_type = o_type + "/" + temp[2]
+            if o_type == temp[2]:
+                pass
+            else:
+                o_type = o_type + "/" + temp[2]
         n = n + 1
         #o_type = temp[2]
 
